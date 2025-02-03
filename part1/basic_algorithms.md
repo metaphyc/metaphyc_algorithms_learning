@@ -23,7 +23,31 @@ def selectionSort(arr):
 ```
 
 ## 归并排序
+分治算法
+- 分解    将数组分解为两个各包含一半元素的子数组
+- 解决    使用归并排序递归地排序两个子数组
+- 合并    合并两个已排序的子数组以产生已排序的答案
+```python
+def mergeSort(arr):
+    if len(arr) < 2:
+        return arr
+    else:
+        mid = len(arr) / 2
+        return merge(mergeSort(arr[0: mid], mergeSort(arr[(mid + 1):])
 
+def merge(arr1, arr2):
+    result = []
+    while arr1 and arr2:
+        if arr1[0] < arr2[0]:
+            result.append(arr1.pop())
+        else:
+            result.append(arr2.pop())
+    whlie arr1:
+        result.append(arr1.pop())
+    while arr2:
+        result.append(arr1.pop())
+    return result
+```
 
 ## 冒泡排序
 
