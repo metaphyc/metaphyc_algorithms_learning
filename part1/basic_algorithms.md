@@ -91,3 +91,19 @@ def binarySearch(arr, x, left=0, right=None):
 ```
 
 # 霍纳规则
+求多项式 $P(x)$ 的值
+```math
+\begin{align}
+P(x) & = \sum_{k = 0}^{n} a_{k} x^k\\
+     & = a_0 + x \left(\sum_{k = 1}^{n} a_{k} x^{k - 1}\right)\\
+     & = a_0 + x (a_1 + x (a_2 + \cdots + x (a_{n - 1} + x a_{n}) \cdots ))
+\end{align}
+```
+```python
+def hornerRule(arr, x):
+    y = 0
+    for i in reversed(range(len(arr))):
+        y = arr[i] + x * y
+    return y
+```
+
