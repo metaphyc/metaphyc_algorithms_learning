@@ -22,10 +22,6 @@ def selectionSort(arr):
             arr[minIdx], arr[i] = arr[i], arr[minIdx]
 ```
 
-> [!WARNING]
-> - 插入排序和选择排序均为原址排序，可直接在原数组上操作
-> - 归并排序不是原址排序，需要用一个新数组保存排序结果
-
 ## 归并排序
 分治算法
 - **分解**    将数组分解为两个各包含一半元素的子数组
@@ -35,7 +31,7 @@ def selectionSort(arr):
 def mergeSort(arr):
     if len(arr) < 2:
         return arr
-    mid = int(len(arr) / 2)
+    mid = len(arr) // 2
     return merge(mergeSort(arr[0: mid]), mergeSort(arr[mid:]))
 
 def merge(arr1, arr2):
@@ -53,9 +49,45 @@ def merge(arr1, arr2):
 ```
 
 ## 冒泡排序
+重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来
+```python
+def bubbleSort(arr):
+    for i in range(len(arr) - 1):
+        for j in range(len(arr) - i  - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+```
+
+> [!WARNING]
+> - 插入排序、选择排序和冒泡排序均为原址排序，可直接在原数组上操作
+> - 归并排序不是原址排序，需要用一个新数组保存排序结果
 
 # 查找
 ## 线性查找
+从左向右在列表中依次查找指定元素，返回其索引，未查到返回-1
+```python
+def linearSearch(list, x):
+    for i in range(len(list)):
+        if list[i] == x:
+            return i
+    return -1
+```
+
 ## 二分查找
+若列表为有序递增数组，可将指定元素与数组中点值比较，根据结果，只在其中一半的子数组中搜索
+```python
+def binarySearch(arr, x, left=0, right=None):
+    if right == None:
+        right = len(arr) - 1
+    if left <= right: 
+        mid = (left + right) // 2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            return binarySearch(arr, x, mid + 1, right)
+        elif arr[mid] > x:
+            return binarySearch(arr, x, left, mid - 1)
+    return -1 
+```
 
 # 霍纳规则
