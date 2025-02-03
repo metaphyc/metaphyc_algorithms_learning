@@ -32,20 +32,20 @@ def mergeSort(arr):
     if len(arr) < 2:
         return arr
     else:
-        mid = len(arr) / 2
-        return merge(mergeSort(arr[0: mid], mergeSort(arr[(mid + 1):])
+        mid = int(len(arr) / 2)
+        return merge(mergeSort(arr[0: mid]), mergeSort(arr[mid:]))
 
 def merge(arr1, arr2):
     result = []
     while arr1 and arr2:
         if arr1[0] < arr2[0]:
-            result.append(arr1.pop())
+            result.append(arr1.pop(0))
         else:
-            result.append(arr2.pop())
-    whlie arr1:
-        result.append(arr1.pop())
+            result.append(arr2.pop(0))
+    while arr1:
+        result.append(arr1.pop(0))
     while arr2:
-        result.append(arr1.pop())
+        result.append(arr1.pop(0))
     return result
 ```
 
