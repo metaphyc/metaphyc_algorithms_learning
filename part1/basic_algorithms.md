@@ -22,18 +22,21 @@ def selectionSort(arr):
             arr[minIdx], arr[i] = arr[i], arr[minIdx]
 ```
 
+> [!WARNING]
+> - 插入排序和选择排序均为原址排序，可直接在原数组上操作
+> - 归并排序不是原址排序，需要用一个新数组保存排序结果
+
 ## 归并排序
 分治算法
-- 分解    将数组分解为两个各包含一半元素的子数组
-- 解决    使用归并排序递归地排序两个子数组
-- 合并    合并两个已排序的子数组以产生已排序的答案
+- **分解**    将数组分解为两个各包含一半元素的子数组
+- **解决**    使用归并排序递归地排序两个子数组，若子数组只包含1个元素，则直接返回
+- **合并**    合并两个已排序的子数组以产生已排序的答案
 ```python
 def mergeSort(arr):
     if len(arr) < 2:
         return arr
-    else:
-        mid = int(len(arr) / 2)
-        return merge(mergeSort(arr[0: mid]), mergeSort(arr[mid:]))
+    mid = int(len(arr) / 2)
+    return merge(mergeSort(arr[0: mid]), mergeSort(arr[mid:]))
 
 def merge(arr1, arr2):
     result = []
